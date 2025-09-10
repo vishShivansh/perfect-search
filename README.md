@@ -26,7 +26,7 @@ It allows users to instantly search through different entity types (people, file
 
 ## 🎥 Demo Video
 
-[![Smart Search Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.loom.com/share/1d7dd569fedd4b0f86361c4c65d18ea1?sid=a7322fe0-2cfa-4889-a983-933ad95b7954)
+[![Smart Search Demo]](https://www.loom.com/share/1d7dd569fedd4b0f86361c4c65d18ea1?sid=a7322fe0-2cfa-4889-a983-933ad95b7954)
 
 > Click the thumbnail to watch the full demo.
 
