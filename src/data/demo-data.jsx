@@ -26,6 +26,11 @@ const listNames = [
 
 const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+// Helper to make a link-friendly value (slug)
+const makeLink = (name) => {
+  return `/search?value=${encodeURIComponent(name)}`;
+};
+
 export default function generateDemoData(count = 100) {
   const data = [];
 
@@ -33,44 +38,48 @@ export default function generateDemoData(count = 100) {
     const type = getRandom(["person", "files", "chat", "list"]);
 
     if (type === "person") {
+      const name = getRandom(randomNames);
       data.push({
         id: i,
         type: "person",
-        name: getRandom(randomNames),
+        name,
         status: Math.random() > 0.5 ? "Active recently" : "Inactive",
         avatar: `https://i.pravatar.cc/40?img=${Math.floor(Math.random() * 70) + 1}`,
-        link: "#"
+        link: makeLink(name)
       });
     }
 
     if (type === "files") {
       const subType = getRandom(fileTypes);
+      const name = getRandom(fileNames[subType]);
       data.push({
         id: i,
         type: subType,
-        name: getRandom(fileNames[subType]),
+        name,
         status: `Edited ${Math.floor(Math.random() * 30)}d ago`,
-        link: "#"
+        link: makeLink(name)
       });
     }
 
     if (type === "chat") {
+      const name = getRandom(chatNames);
       data.push({
         id: i,
         type: "chat",
-        name: getRandom(chatNames),
+        name,
         status: `Last message ${Math.floor(Math.random() * 12)}h ago`,
-        link: "#"
+        link: makeLink(name)
       });
     }
 
     if (type === "list") {
+      const name = getRandom(listNames);
       data.push({
         id: i,
         type: "list",
-        name: getRandom(listNames),
+        name,
         status: `${Math.floor(Math.random() * 20) + 1} items • Updated ${Math.floor(Math.random() * 10)}d ago`,
-        link: "#"
+        link: makeLink(name)
       });
     }
   }

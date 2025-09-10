@@ -40,7 +40,8 @@ export default function SmartSearch() {
     };
 
     const handleCopy = (id, link) => {
-        navigator.clipboard.writeText(link);
+        const fullLink = `${window.location.origin}${link}`;
+        navigator.clipboard.writeText(fullLink);
         setCopiedId(id);
         setToast(true);
         setTimeout(() => setToast(false), 2000);
@@ -215,25 +216,51 @@ export default function SmartSearch() {
                             : filteredResults.length > 0 ? (
                                 filteredResults.map(item => (
                                     <div key={item.id}>
-                                        <div className="flex flex-row justify-between items-start sm:items-center px-2 sm:px-4 py-2 sm:py-3 hover:bg-gray-50 group cursor-pointer">
+                                        <div
+                                            onClick={() => window.open(item.link, "_parent")}
+                                            className="flex flex-row justify-between items-start sm:items-center px-2 sm:px-4 py-2 sm:py-3 hover:bg-gray-50 group cursor-pointer"
+                                        >
                                             <div className="flex items-center gap-2 sm:gap-3">
                                                 {item.type === "person" ? (
                                                     <div className="relative w-8 h-8 sm:w-10 sm:h-10">
-                                                        <img src={item.avatar} alt={item.name} className="w-full h-full rounded-md object-cover" />
-                                                        <span className={`absolute -bottom-1 -right-1 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full border-2 border-white ${item.status === "Active recently" ? "bg-green-500" : "bg-red-500"}`} />
+                                                        <img
+                                                            src={item.avatar}
+                                                            alt={item.name}
+                                                            className="w-full h-full rounded-md object-cover"
+                                                        />
+                                                        <span
+                                                            className={`absolute -bottom-1 -right-1 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full border-2 border-white ${item.status === "Active recently"
+                                                                    ? "bg-green-500"
+                                                                    : "bg-red-500"
+                                                                }`}
+                                                        />
                                                     </div>
                                                 ) : (
-                                                    <span className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-md flex items-center justify-center">{getIcon(item.type)}</span>
+                                                    <span className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-md flex items-center justify-center">
+                                                        {getIcon(item.type)}
+                                                    </span>
                                                 )}
 
                                                 <div className="flex flex-col">
-                                                    <div className="text-sm sm:text-base font-medium">{highlightMatch(item.name)}</div>
-                                                    <div className="text-[10px] sm:text-[11px] text-gray-400 font-medium">{item.status}</div>
+                                                    <div className="text-sm sm:text-base font-medium">
+                                                        {highlightMatch(item.name)}
+                                                    </div>
+                                                    <div className="text-[10px] sm:text-[11px] text-gray-400 font-medium">
+                                                        {item.status}
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div className="flex gap-2 mt-2 sm:mt-0">
-                                                <button onClick={() => handleCopy(item.id, item.link)} title="Copy" className="relative">
+                                                {/* Copy Button */}
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleCopy(item.id, item.link);
+                                                    }}
+                                                    title="Copy"
+                                                    className="relative"
+                                                >
                                                     <LinkIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
                                                     {/* Toast */}
                                                     {copiedId === item.id && toast && (
@@ -242,12 +269,23 @@ export default function SmartSearch() {
                                                         </div>
                                                     )}
                                                 </button>
-                                                <a href={item.link} target="_blank" rel="noreferrer" className="flex gap-1 items-center">
+
+                                                {/* External Link */}
+                                                <a
+                                                    href={item.link}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="flex gap-1 items-center"
+                                                >
                                                     <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 hover:text-gray-600" />
-                                                    <span className="hidden sm:block text-[11px] text-gray-500">New Tab</span>
+                                                    <span className="hidden sm:block text-[11px] text-gray-500">
+                                                        New Tab
+                                                    </span>
                                                 </a>
                                             </div>
                                         </div>
+
                                         <div className="border-b-2 border-gray-100"></div>
                                     </div>
                                 ))
