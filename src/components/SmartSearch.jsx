@@ -127,19 +127,19 @@ export default function SmartSearch() {
   const tabs = ["All", ...Object.keys(activeSettings).filter(key => activeSettings[key])];
 
   return (
-    <div className="relative mx-auto mt-6 transition-all duration-300 w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl px-2 sm:px-0">
+    <div className="relative mx-auto mt-6 transition-all duration-300 w-full sm:max-w-md md:max-w-lg lg:max-w-lg xl:max-w-2xl 2xl:max-w-4xl px-2 sm:px-0">
       <div className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
 
         {/* Search Bar */}
         <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3">
           <div className="flex items-center gap-2 flex-1">
             {loading
-              ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 animate-spin" />
-              : <Search className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400" />}
+              ? <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+              : <Search className="w-5 h-5 text-gray-400" />}
             <input
               type="text"
               placeholder="Searching is easier"
-              className="flex-1 bg-transparent outline-none text-sm sm:text-base md:text-lg text-gray-700 placeholder-gray-400"
+              className="flex-1 bg-transparent outline-none text-sm sm:text-base md:text-sm text-gray-700 placeholder-gray-400"
               value={query}
               onChange={handleInputChange}
             />
@@ -153,8 +153,8 @@ export default function SmartSearch() {
             </button>
           ) : (
             <div className="flex items-center gap-2 px-2 py-1 rounded-full">
-              <span className="text-xs sm:text-sm font-medium bg-white px-2 py-0.5 rounded-sm shadow border border-gray-200">S</span>
-              <span className="text-xs sm:text-sm text-gray-500">quick access</span>
+              <span className="text-xs font-medium bg-white px-2 py-0.5 rounded-sm shadow border border-gray-200">S</span>
+              <span className="text-xs text-gray-500">quick access</span>
             </div>
           )}
         </div>
@@ -162,12 +162,12 @@ export default function SmartSearch() {
         {/* Tabs + Settings */}
         <div className={`transition-all duration-500 ease-in-out ${results.length > 0 || query ? "max-h-[60vh] opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-gray-200 text-sm sm:text-base">
-            <div className="flex flex-wrap gap-2 sm:gap-4 px-3 sm:px-4 py-1">
+            <div className="flex flex-wrap gap-2 sm:gap-4 px-3 sm:px-4">
               {tabs.map(tab => (
                 <button
                   key={tab}
                   onClick={() => setCategory(tab)}
-                  className={`flex items-center gap-1 sm:gap-2 pb-1 sm:pb-2 ${category === tab ? "font-semibold text-gray-900 border-b-2 border-black" : "text-gray-500 hover:text-gray-700 hover:border-b-2 hover:border-gray-400"}`}
+                  className={`flex items-center gap-1 sm:gap-2 pb-2 ${category === tab ? "font-semibold text-gray-900 border-b-2 border-black" : "text-gray-500 hover:text-gray-700 hover:border-b-2 hover:border-gray-400"}`}
                 >
                   {categoryIcons[tab]} {tab}
                   <span className="text-[10px] sm:text-[11px] rounded-sm bg-gray-200 px-1">{counts[tab]}</span>
