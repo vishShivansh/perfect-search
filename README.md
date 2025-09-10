@@ -1,12 +1,69 @@
-# React + Vite
+# 🔍 Smart Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Search is a modern, lightweight, and intuitive search component built with **React + TailwindCSS**.  
+It allows users to instantly search through different entity types (people, files, chats, lists) with:
 
-Currently, two official plugins are available:
+- **Highlighting** of matched terms  
+- **Contextual icons** (person, file, folder, chat, list)  
+- **Status indicators** (e.g., "Active recently", "Edited 2d ago")  
+- **Quick actions** → Copy link or open in new tab  
+- **Smart links** → Each result maps to a clean `/search?value=...` URL  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔎 Search across multiple entity types (people, files, chats, lists)  
+- 🎲 Auto-generated demo data (100+ items with random names & statuses)  
+- 🖱️ Clickable rows → open result in a new tab  
+- 📋 Copy-to-clipboard with toast notification (copies full `https://hostname/...`)  
+- 🚫 Stop event bubbling → Copy & New Tab buttons work independently of row click  
+- 📱 Responsive design (mobile & desktop)  
+
+---
+
+## 🖼️ Demo Preview
+
+## 🎥 Demo Video
+
+[![Smart Search Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.loom.com/share/1d7dd569fedd4b0f86361c4c65d18ea1?sid=a7322fe0-2cfa-4889-a983-933ad95b7954)
+
+> Click the thumbnail to watch the full demo.
+
+
+**Row Example (Person):**
+- Avatar + Online/Offline indicator  
+- Name with highlight  
+- Status text  
+- Actions → Copy / New Tab  
+
+**Row Example (File):**
+- File icon (📄, 🖼️, 🎥, 📁 depending on type)  
+- File name with highlight  
+- Last edited status  
+- Actions → Copy / New Tab  
+
+---
+
+## ⚡ Tech Stack
+
+- [React](https://reactjs.org/) (UI)  
+- [TailwindCSS](https://tailwindcss.com/) (styling)  
+- [Lucide Icons](https://lucide.dev/) (icons)  
+- JavaScript Utilities (random demo data generator)  
+
+---
+
+## 🛠️ Installation
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/smart-search.git
+
+cd smart-search
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
